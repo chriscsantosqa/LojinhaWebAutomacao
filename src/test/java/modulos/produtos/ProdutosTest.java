@@ -34,8 +34,8 @@ public class ProdutosTest {
     public void testNaoEPermitidoRegistrarProdutoComValorIgualAZero(){
         // Vou fazer login
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario("")
+                .informarASenha("")
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
