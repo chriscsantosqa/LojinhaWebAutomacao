@@ -51,8 +51,8 @@ public class ProdutosTest {
     @DisplayName("B Não e permitido registrar um produto com valor maior que sete mil")
     public void testNaoEPermitidoRegistrarProdutoComValorMaiorQueSeteMil(){
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario("")
+                .informarASenha("")
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
@@ -68,8 +68,8 @@ public class ProdutosTest {
     @DisplayName("C E permitido registrar um produto que estejam no limite de 0,01")
     public void testPossoAdicionarProdutosComValorDeUmCentavo(){
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario("")
+                .informarASenha("")
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
@@ -85,8 +85,8 @@ public class ProdutosTest {
     @DisplayName("D E permitido registrar um produto que estejam no limite de 7.000,00")
     public void testPossoAdicionarProdutosComValorDeSeteMilReais(){
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario("")
+                .informarASenha("")
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
