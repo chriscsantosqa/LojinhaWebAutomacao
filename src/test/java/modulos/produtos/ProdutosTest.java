@@ -12,6 +12,8 @@ import java.time.Duration;
 public class ProdutosTest {
 
     private WebDriver navegador;
+    String username = System.getenv("username");
+    String password = System.getenv("password");
 
     @BeforeEach
     public void beforeEach(){
@@ -34,8 +36,8 @@ public class ProdutosTest {
     public void testNaoEPermitidoRegistrarProdutoComValorIgualAZero(){
         // Vou fazer login
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario(username)
+                .informarASenha(password)
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
@@ -51,8 +53,8 @@ public class ProdutosTest {
     @DisplayName("B Não e permitido registrar um produto com valor maior que sete mil")
     public void testNaoEPermitidoRegistrarProdutoComValorMaiorQueSeteMil(){
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario(username)
+                .informarASenha(password)
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
@@ -68,8 +70,8 @@ public class ProdutosTest {
     @DisplayName("C E permitido registrar um produto que estejam no limite de 0,01")
     public void testPossoAdicionarProdutosComValorDeUmCentavo(){
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario(username)
+                .informarASenha(password)
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
@@ -85,8 +87,8 @@ public class ProdutosTest {
     @DisplayName("D E permitido registrar um produto que estejam no limite de 7.000,00")
     public void testPossoAdicionarProdutosComValorDeSeteMilReais(){
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario(username)
+                .informarASenha(password)
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
