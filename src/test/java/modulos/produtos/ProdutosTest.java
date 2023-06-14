@@ -3,15 +3,35 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import paginas.AddressPage;
 import paginas.LoginPage;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
+import java.util.Properties;
 
 @DisplayName("Testes Web do Modulo de Produtos")
 public class ProdutosTest {
 
     private WebDriver navegador;
+    String username;
+    String password;
+    String baseUrl;
+
+    {
+        try (InputStream input = new FileInputStream("C:\\Users\\Chris\\IdeaProjects\\lojinhaWebAutomacao\\src\\test\\resources\\config.properties")) {
+
+            Properties prop = new Properties();
+            prop.load(input);
+            baseUrl = prop.getProperty("db.url");
+            username = prop.getProperty("db.user");
+            password = prop.getProperty("db.password");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @BeforeEach
     public void beforeEach(){
@@ -21,11 +41,10 @@ public class ProdutosTest {
         System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver114\\chromedriver.exe");
 
         // Configurações
-        AddressPage urlPage = new AddressPage();
         this.navegador = new ChromeDriver(options);
         this.navegador.manage().window().maximize();
         this.navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        this.navegador.get(urlPage.getUrlPage());
+        this.navegador.get(baseUrl);
 
     }
 
@@ -34,8 +53,8 @@ public class ProdutosTest {
     public void testNaoEPermitidoRegistrarProdutoComValorIgualAZero(){
         // Vou fazer login
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario(username)
+                .informarASenha(password)
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
@@ -51,8 +70,8 @@ public class ProdutosTest {
     @DisplayName("B Não e permitido registrar um produto com valor maior que sete mil")
     public void testNaoEPermitidoRegistrarProdutoComValorMaiorQueSeteMil(){
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario(username)
+                .informarASenha(password)
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
@@ -68,8 +87,8 @@ public class ProdutosTest {
     @DisplayName("C E permitido registrar um produto que estejam no limite de 0,01")
     public void testPossoAdicionarProdutosComValorDeUmCentavo(){
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario(username)
+                .informarASenha(password)
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
@@ -85,8 +104,8 @@ public class ProdutosTest {
     @DisplayName("D E permitido registrar um produto que estejam no limite de 7.000,00")
     public void testPossoAdicionarProdutosComValorDeSeteMilReais(){
         String mensagemApresentada = new LoginPage(navegador)
-                .informarOUsuario("admin")
-                .informarASenha("admin")
+                .informarOUsuario(username)
+                .informarASenha(password)
                 .submeterFormularioDeLogin()
                 .acessarFormularioDeAdicaoNovoProduto()
                 .informarNomeDoProduto("Macbook Pro")
