@@ -20,7 +20,7 @@ public class ProdutosTest {
     String baseUrl;
 
     {
-        try (InputStream input = new FileInputStream("C:\\Users\\Chris\\IdeaProjects\\lojinhaWebAutomacao\\src\\test\\resources\\config.properties")) {
+        try (InputStream input = new FileInputStream("C:\\Users\\Chris\\IdeaProjects\\lojinhaWebAutomacao\\config.properties")) {
 
             Properties prop = new Properties();
             prop.load(input);
